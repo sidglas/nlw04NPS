@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import { CreateSurveyService } from "../services/CreateSurveyService";
+import { ShowSurveyService } from "../services/ShowSurveyService";
 
 class SurveyController {
 
@@ -11,6 +12,15 @@ class SurveyController {
     return response.json(survey)
 
   }
+
+  async show(request: Request, response: Response) {
+    const showSurveyService = new ShowSurveyService()
+    const all = await showSurveyService.execute()
+    return response.json(all)
+
+  }
 }
 
 export { SurveyController }
+
+
