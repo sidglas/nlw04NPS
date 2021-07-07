@@ -9,7 +9,7 @@ class SurveyController {
     const { title, description} = request.body;
     const createSurveyService = new CreateSurveyService()
     const survey = await createSurveyService.execute({ title, description })
-    return response.json(survey)
+    return response.status(201).json(survey)
 
   }
 
