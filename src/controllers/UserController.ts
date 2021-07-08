@@ -8,7 +8,14 @@ class UserController {
     const { name, email} = request.body;
     const createUserService = new CreateUserService()
     const user = await createUserService.execute({ name, email })
-    return response.status(201).json(user)
+    
+    console.log('Status', response.statusCode)
+    let { statusCode } = response
+    return  statusCode === 200 
+      ? response.status(201).json(user)
+      : response.status(statusCode).json({
+        error: "User already exists!"
+      });
 
   }
 
